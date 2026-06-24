@@ -1,0 +1,104 @@
+Python Full Stack Technology Research
+
+1. What is Python Full Stack?
+Python Full Stack Development is the process of developing both the front-end (user interface) and back-end (server-side logic) of web applications using Python and related technologies. A Full Stack Developer can work on all layers of an application, including databases, servers, APIs, and user interfaces.
+
+2. Which Frameworks Are Used?
+
+Backend Frameworks -
+
+Django
+
+Flask
+
+FastAPI
+
+Frontend Technologies -
+
+HTML
+
+CSS
+
+JavaScript
+
+Bootstrap
+
+React.js (optional)
+
+Database -
+
+MySQL
+
+PostgreSQL
+
+SQLite
+
+3. Where Is It Used?
+Python Full Stack is used for :
+
+Web Application Development
+
+E-commerce Websites
+
+Banking Applications
+
+Healthcare Systems
+
+Educational Platforms
+
+Social Media Applications
+
+Business Management Systems
+
+Examples: Instagram, Spotify, Dropbox, and YouTube use Python in various parts of their systems.
+
+4. Required Skill Set
+A Python Full Stack Developer should have knowledge of:
+
+Python Programming
+
+HTML, CSS, JavaScript
+
+Django/Flask Framework
+
+SQL and Databases
+
+Git and GitHub
+
+REST APIs
+
+Object-Oriented Programming (OOP)
+
+Problem Solving Skills
+
+Basic Testing and Debugging
+
+5. Career Opportunities
+After learning Python Full Stack, you can apply for roles such as:
+
+Python Developer
+
+Full Stack Developer
+
+Web Developer
+
+Backend Developer
+
+Software Engineer
+
+Application Developer
+
+API Developer
+
+6. Future Scope
+Python Full Stack has a strong future because:
+
+Python is one of the most popular programming languages.
+
+Demand for web applications is increasing.
+
+Python is widely used in AI, Machine Learning, and Data Science.
+
+Many companies prefer Python for rapid application development.
+
+Full Stack Developers are highly valued because they can handle both front-end and back-end development.
