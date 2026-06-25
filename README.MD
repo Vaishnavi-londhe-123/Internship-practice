@@ -1,5 +1,5 @@
 I am Vaishnavi Londhe.
- Python Full Stack Developer.
+I am Python Full Stack Developer.
 I am a passionate engineering student with a strong interest in software development and modern web technologies. 
 
 ## Skills
