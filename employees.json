@@ -1,0 +1,23 @@
+[
+    {
+        "Emp ID": "1",
+        "Name": "Vrunda",
+        "Department": "IT",
+        "Salary": 35000.0,
+        "Joining Date": "2025-07-07"
+    },
+    {
+        "Emp ID": "2",
+        "Name": "Sahil",
+        "Department": "IT",
+        "Salary": 30000.0,
+        "Joining Date": "2001-23-04"
+    },
+    {
+        "Emp ID": "3",
+        "Name": "Vijay",
+        "Department": "IT",
+        "Salary": 30000.0,
+        "Joining Date": "2001-10-28"
+    }
+]
