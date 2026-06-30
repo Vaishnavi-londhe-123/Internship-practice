@@ -19,5 +19,12 @@
         "Department": "IT",
         "Salary": 30000.0,
         "Joining Date": "2001-10-28"
+    },
+    {
+        "Emp ID": "4",
+        "Name": "Sneha",
+        "Department": "Finance",
+        "Salary": 20000.0,
+        "Joining Date": "2025-04-15"
     }
 ]
