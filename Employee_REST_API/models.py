@@ -11,6 +11,8 @@ class Employee(db.Model):
     Department_Name = db.Column(db.String(100), nullable=False)
     Salary = db.Column(db.Float, nullable=False)
     Joining_Date = db.Column(db.Date, nullable=False)
+    Email = db.Column(db.String(50), nullable=False)
+    City = db.Column(db.String(50), nullable=False)
 
     def to_dict(self):
         return {
@@ -18,5 +20,7 @@ class Employee(db.Model):
             "Emp_Name": self.Emp_Name,
             "Department_Name": self.Department_Name,
             "Salary": self.Salary,
-            "Joining_Date": str(self.Joining_Date)
+            "Joining_Date": str(self.Joining_Date),
+            "Email": self.Email,
+            "City": self.City
         }
