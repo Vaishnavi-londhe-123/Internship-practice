@@ -247,7 +247,18 @@ Where Emp_Name = "Rohan";
 Update Employee
 SET Email = 'neha@gmail.com'
 Where Emp_Name = "Neha";
-
+Update Employee
+SET Email = 'karan@gmail.com'
+Where Emp_Name = "Karan";
+Update Employee
+SET Email = 'pooja@gmail.com'
+Where Emp_Name = "Pooja";
+Update Employee
+SET Email = 'aakash@gmail.com'
+Where Emp_Name = "Aakash";
+Update Employee
+SET Email = 'meena@gmail.com'
+Where Emp_Name = "Meena";
 CREATE TABLE users (
     User_ID INT AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(100) NOT NULL,

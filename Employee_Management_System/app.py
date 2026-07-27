@@ -316,11 +316,106 @@ def login():
     return "Invalid Email or Password"
     
     # ------------------ DASHBOARD ------------------
-
 @app.route('/dashboard')
 def dashboard():
-    return render_template("home.html")
 
+    total_employees = Employee.query.count()
+
+    active_records = Employee.query.count()
+
+    recent_employees = Employee.query.order_by(
+        Employee.Emp_ID.desc()
+    ).all()
+
+    return render_template(
+        "dashboard.html",
+        total_employees=total_employees,
+        active_records=active_records,
+        recent_employees=recent_employees
+    )
+
+@app.route('/employees-list')
+def employees_list():
+
+    employees = Employee.query.all()
+
+    return render_template(
+        "employees.html",
+        employees=employees
+    )
+    
+# ------------------ ADD EMPLOYEE PAGE ------------------
+
+@app.route('/add-employee')
+def add_employee_page():
+    return render_template("add_employee.html")
+
+
+# ------------------ TOTAL EMPLOYEES ------------------
+
+@app.route('/total-employees')
+def total_employees_page():
+
+    employees = Employee.query.all()
+
+    return render_template(
+        "employees.html",
+        employees=employees,
+        title="Total Employees"
+    )
+
+
+# ------------------ ACTIVE RECORDS ------------------
+
+@app.route('/active-records')
+def active_records_page():
+
+    employees = Employee.query.all()
+
+    return render_template(
+        "employees.html",
+        employees=employees,
+        title="Active Records"
+    )
+
+
+# ------------------ RECENTLY ADDED ------------------
+
+@app.route('/recently-added')
+def recently_added_page():
+
+    employees = Employee.query.order_by(
+        Employee.Emp_ID.desc()
+    ).limit(5).all()
+
+    return render_template(
+        "employees.html",
+        employees=employees,
+        title="Recently Added Employees"
+    )   
+    
+# ------------------ SAVE EMPLOYEE ------------------
+
+@app.route('/save-employee', methods=['POST'])
+def save_employee():
+
+    data = request.form
+
+    emp = Employee(
+        Emp_Name=data["Emp_Name"],
+        Department_Name=data["Department_Name"],
+        Salary=float(data["Salary"]),
+        Joining_Date=datetime.strptime(
+            data["Joining_Date"], "%Y-%m-%d"
+        ).date(),
+        Email=data["Email"],
+        City=data["City"]
+    )
+
+    db.session.add(emp)
+    db.session.commit()
+
+    return redirect(url_for("dashboard"))             
 # ------------------ LOG OUT  ------------------
 
 @app.route('/logout')

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Employee</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="sidebar">
+
+        <h2>EMS</h2>
+
+        <a href="/dashboard">🏠 Dashboard</a>
+        <a href="/employees-list">👨‍💼 Employees</a>
+        <a href="/add-employee">➕ Add Employee</a>
+        <a href="/logout">🚪 Logout</a>
+
+    </div>
+
+    <div class="main">
+
+        <div class="header">
+            <h2>Add Employee</h2>
+        </div>
+
+        <form action="/save-employee" method="POST">
+
+            <input type="text" name="Emp_Name" placeholder="Employee Name" required><br><br>
+
+            <input type="text" name="Department_Name" placeholder="Department Name" required><br><br>
+
+            <input type="number" name="Salary" placeholder="Salary" required><br><br>
+
+            <input type="date" name="Joining_Date" required><br><br>
+
+            <input type="email" name="Email" placeholder="Email" required><br><br>
+
+            <input type="text" name="City" placeholder="City" required><br><br>
+
+            <button type="submit">Add Employee</button>
+
+        </form>
+
+    </div>
+
+</div>
+</html>

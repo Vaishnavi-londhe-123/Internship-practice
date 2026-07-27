@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <h2>EMS</h2>
+
+        <a href="/dashboard">🏠 Dashboard</a>
+
+        <a href="/employees-list">👨‍💼 Employees</a>
+
+        <a href="/add-employee">➕ Add Employee</a>
+
+        <a href="/logout">🚪 Logout</a>
+
+    </div>
+
+    <!-- Main -->
+
+    <div class="main">
+
+        <div class="header">
+            <h1>Employee Management System</h1>
+            <h3>Welcome Admin 👋</h3>
+        </div>
+
+        <!-- Cards -->
+
+        <div class="cards">
+
+            <a href="/total-employees" style="text-decoration:none;">
+                <div class="card total-card">
+                    <h2>{{ total_employees }}</h2>
+                    <p>Total Employees</p>
+                </div>
+            </a>
+
+            <a href="/active-records" style="text-decoration:none;">
+                <div class="card active-card">
+                    <h2>{{ active_records }}</h2>
+                    <p>Active Records</p>
+                </div>
+            </a>
+
+            <a href="/recently-added" style="text-decoration:none;">
+                <div class="card recent-card">
+                    <h2>{{ recent_employees|length }}</h2>
+                    <p>Recently Added</p>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- Employee Records -->
+
+        <h2 style="margin-top:30px;">Employee Records</h2>
+
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>City</th>
+            </tr>
+
+            {% for emp in recent_employees %}
+
+            <tr>
+                <td>{{ emp.Emp_ID }}</td>
+                <td>{{ emp.Emp_Name }}</td>
+                <td>{{ emp.Department_Name }}</td>
+                <td>{{ emp.City }}</td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>

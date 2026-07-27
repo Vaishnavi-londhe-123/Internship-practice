@@ -1,0 +1,242 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-image: url("/static/images/emp1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.container {
+    display: flex;
+}
+
+/* Sidebar */
+
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #2c3e50;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.sidebar h2 {
+    color: white;
+    text-align: center;
+    font-size: 32px;
+    padding: 25px 0;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: #34495e;
+}
+
+/* Main */
+
+.main {
+    margin-left: 220px;
+    padding: 30px;
+    flex: 1;
+}
+
+/* Header */
+
+.header {
+    background: rgba(255, 255, 255, 0.92);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+}
+
+.header h1 {
+    font-size: 34px;
+    font-weight: bold;
+}
+
+.header h3 {
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+/* Cards */
+
+.cards {
+    display: flex;
+    gap: 25px;
+    margin-top: 25px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .25);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h2 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.card p {
+    font-size: 18px;
+}
+
+/* Card Colors */
+
+.total-card {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.active-card {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+.recent-card {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+/* Employee Records */
+
+.main h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+/* Table */
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, .95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+}
+
+table th {
+    background: #3498db;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+}
+
+table td {
+    padding: 14px;
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+
+table tr:hover {
+    background: #eef7ff;
+}
+
+/* Form */
+
+form {
+    width: 450px;
+    background: rgba(255, 255, 255, .92);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #2980b9;
+}
+
+/* Responsive */
+
+@media(max-width:768px) {
+
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .main {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .cards {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .header h3 {
+        font-size: 18px;
+    }
+
+    table th,
+    table td {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
