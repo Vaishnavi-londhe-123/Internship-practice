@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+
     <meta charset="UTF-8">
     <title>Employee Dashboard</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
 </head>
-
 <body>
-
 <div class="container">
 
     <!-- Sidebar -->
@@ -22,18 +25,22 @@
 
         <a href="/employees-list">👨‍💼 Employees</a>
 
-        <a href="/add-employee">➕ Add Employee</a>
+        <a href="/users-list">👤 Users</a>
+
+        <a href="/reports">📊 Reports</a>
+
+        <a href="/settings">⚙️ Settings</a>
 
         <a href="/logout">🚪 Logout</a>
 
     </div>
 
-    <!-- Main -->
+    <!-- Main Content -->
 
-    <div class="main">
-
+    <div class="main"> .
         <div class="header">
             <h1>Employee Management System</h1>
+
             <h3>Welcome Admin 👋</h3>
         </div>
 
@@ -43,56 +50,142 @@
 
             <a href="/total-employees" style="text-decoration:none;">
                 <div class="card total-card">
+
                     <h2>{{ total_employees }}</h2>
                     <p>Total Employees</p>
+
                 </div>
             </a>
 
             <a href="/active-records" style="text-decoration:none;">
                 <div class="card active-card">
+
                     <h2>{{ active_records }}</h2>
                     <p>Active Records</p>
+
                 </div>
             </a>
 
             <a href="/recently-added" style="text-decoration:none;">
                 <div class="card recent-card">
+
                     <h2>{{ recent_employees|length }}</h2>
                     <p>Recently Added</p>
+
                 </div>
             </a>
-
         </div>
 
-        <!-- Employee Records -->
+        <!-- Charts Section -->
 
-        <h2 style="margin-top:30px;">Employee Records</h2>
+        <div class="charts-row">
 
-        <table>
+            <!-- Joining Trend Line Chart -->
 
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Department</th>
-                <th>City</th>
-            </tr>
+            <div class="chart-box">
 
-            {% for emp in recent_employees %}
+                <h2>Employee Joining Trend</h2>
 
-            <tr>
-                <td>{{ emp.Emp_ID }}</td>
-                <td>{{ emp.Emp_Name }}</td>
-                <td>{{ emp.Department_Name }}</td>
-                <td>{{ emp.City }}</td>
-            </tr>
+                <canvas id="lineChart"></canvas>
 
-            {% endfor %}
+            </div>
 
-        </table>
+            <!-- Department Pie Chart -->
 
+            <div class="chart-box">
+
+                <h2>Department Wise Employees</h2>
+
+                <canvas id="pieChart"></canvas>
+
+            </div>
+        </div>
     </div>
-
 </div>
 
+<script>
+
+window.onload = function(){Chart.register(ChartDataLabels);
+
+    // LINE CHART
+
+    const lineCtx = document.getElementById("lineChart").getContext("2d");
+
+    new Chart(lineCtx, { type:"line", data:{ labels: {{ joining_months | tojson }}, datasets:[{ label:"Employees Joined",
+
+                data: {{ joining_counts | tojson }},
+
+                borderWidth:3,
+
+                tension:0.4,
+
+                fill:false
+            }]
+        },
+
+        options:{ responsive:true,  maintainAspectRatio:false, plugins:{ legend:{ position:"top" }
+
+            },
+
+            scales:{ y:{ beginAtZero:true }
+
+            }
+
+        }
+
+    });
+
+    // PIE CHART
+
+    const pieCtx = document.getElementById("pieChart").getContext("2d");
+    
+    new Chart(pieCtx,{type:"pie",
+
+        data:{ labels:[
+
+                "HR",
+                "IT",
+                "Sales",
+                "Finance"
+
+            ],
+
+            datasets:[{ data:[
+
+                    {{ hr_count }},
+
+                    {{ it_count }},
+
+                    {{ sales_count }},
+
+                    {{ finance_count }}
+
+                ],
+
+                backgroundColor:["#36A2EB", "#4BC0C0","#FF9F40" ], borderWidth:2
+            }]
+        },
+
+        options:{  responsive:true, maintainAspectRatio:false,
+
+        plugins:{ legend:{ position:"right"},
+
+        datalabels:{display:true, color:"white", font:{size:15,weight:"bold" },
+
+                    formatter:function(value,context){
+                        return context.chart.data.labels[context.dataIndex];
+
+                    }
+
+                }
+            }
+
+        }
+    });
+};
+
+</script>
+
 </body>
+
 </html>

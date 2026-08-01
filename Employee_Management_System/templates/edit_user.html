@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Edit User</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='dashboard.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+<h2>EMS</h2>
+
+<a href="/dashboard">🏠 Dashboard</a>
+
+<a href="/employees-list">👨‍💼 Employees</a>
+
+<a href="/users-list">👤 Users</a>
+
+<a href="/add-employee">➕ Add Employee</a>
+
+<a href="/logout">🚪 Logout</a>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+<div class="header">
+
+<h1>Edit User</h1>
+
+<h3>Update User Details ✏️</h3>
+
+</div>
+
+<form action="/update-user/{{ user.User_ID }}" method="POST">
+
+<label>Name</label>
+
+<input
+type="text"
+name="Name"
+value="{{ user.Name }}">
+
+<label>Email</label>
+
+<input
+type="email"
+name="Email"
+value="{{ user.Email }}">
+
+<label>Password</label>
+
+<input
+type="text"
+name="Password"
+value="{{ user.Password }}">
+
+<label>Status</label>
+
+<select name="Status">
+
+    <option value="Active"
+    {% if user.Status=="Active" %}selected{% endif %}>
+    Active
+    </option>
+
+    <option value="Inactive"
+    {% if user.Status=="Inactive" %}selected{% endif %}>
+    Inactive
+    </option>
+
+</select>
+
+<br><br>
+
+<button type="submit">
+Update User
+</button>
+
+<a href="/dashboard">
+
+<button type="button" style="background:#7f8c8d;">
+Back
+</button>
+
+</a>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

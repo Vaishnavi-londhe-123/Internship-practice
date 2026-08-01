@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <h2>EMS</h2>
+
+        <a href="/user-dashboard">🏠 Dashboard</a>
+
+        <a href="/reports">📊 Reports</a>
+
+        <a href="/settings">⚙ Settings</a>
+
+        <a href="/logout">🚪 Logout</a>
+
+    </div>
+
+    <!-- Main -->
+
+    <div class="main">
+
+        <div class="header">
+
+            <h1>Employee Management System</h1>
+
+            <h3>Welcome {{ user.Name }} 👋</h3>
+
+        </div>
+
+        <div class="cards">
+
+            <div class="card total-card">
+                <h2>{{ user.Name }}</h2>
+                <p>Name</p>
+            </div>
+
+            <div class="card active-card">
+                <h2>{{ user.Email }}</h2>
+                <p>Email</p>
+            </div>
+
+            <div class="card recent-card">
+                <h2>{{ user.Role }}</h2>
+                <p>Role</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

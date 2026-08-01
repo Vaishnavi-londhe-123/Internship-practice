@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reports</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="sidebar">
+
+        {% if session["user_role"].lower() == "admin" %}
+
+            <h2>EMS</h2>
+
+            <a href="/dashboard">🏠 Dashboard</a>
+            <a href="/employees-list">👨‍💼 Employees</a>
+            <a href="/users-list">👤 Users</a>
+            <a href="/add-employee">➕ Add Employee</a>
+            <a href="/reports">📊 Reports</a>
+            <a href="/settings">⚙ Settings</a>
+            <a href="/logout">🚪 Logout</a>
+
+        {% else %}
+
+            <h2>EMS</h2>
+
+            <a href="/user-dashboard">🏠 Dashboard</a>
+            <a href="/reports">📊 Reports</a>
+            <a href="/settings">⚙ Settings</a>
+            <a href="/logout">🚪 Logout</a>
+
+        {% endif %}
+
+    </div>
+
+    <div class="main">
+
+        <h1>Employee Report</h1>
+
+        <table border="1" cellpadding="10">
+
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Email</th>
+                <th>City</th>
+            </tr>
+
+            {% for emp in employees %}
+
+            <tr>
+
+                <td>{{ emp.Emp_ID }}</td>
+                <td>{{ emp.Emp_Name }}</td>
+                <td>{{ emp.Department_Name }}</td>
+                <td>{{ emp.Email }}</td>
+                <td>{{ emp.City }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>

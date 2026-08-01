@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Edit Employee</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='dashboard.css') }}">
+
+</head>
+<body>
+
+<div class="container">
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+<h2>EMS</h2>
+
+<a href="/dashboard">🏠 Dashboard</a>
+
+<a href="/employees-list">👨‍💼 Employees</a>
+
+<a href="/users-list">👤 Users</a>
+
+<a href="/add-employee">➕ Add Employee</a>
+
+<a href="/logout">🚪 Logout</a>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+
+<div class="header">
+
+<h1>Edit Employee</h1>
+
+<h3>Update Employee Details ✏️</h3>
+
+</div>
+
+<form action="/update-employee/{{emp.Emp_ID}}" method="POST">
+
+<label>Employee Name</label>
+
+<input 
+type="text" 
+name="Emp_Name"
+value="{{emp.Emp_Name}}">
+
+<label>Department</label>
+
+<input 
+type="text" 
+name="Department_Name"
+value="{{emp.Department_Name}}">
+
+<label>Salary</label>
+
+<input 
+type="text"
+name="Salary"
+value="{{emp.Salary}}">
+
+<label>Joining Date</label>
+
+<input 
+type="date"
+name="Joining_Date"
+value="{{emp.Joining_Date}}">
+
+<label>Email</label>
+
+<input 
+type="email"
+name="Email"
+value="{{emp.Email}}">
+
+<label>Mobile Number</label>
+
+<input
+    type="text"
+    name="Mobile_Number"
+    value="{{ emp.Mobile_Number }}"
+    required
+>
+
+<label>City</label>
+
+<input 
+type="text"
+name="City"
+value="{{emp.City}}">
+
+<button type="submit">
+Update Employee
+</button>
+
+<a href="/employees-list">
+
+<button type="button" style="background:#7f8c8d;">
+Back
+</button>
+
+</a>
+</form>
+</div>
+</div>
+</body>
+</html>

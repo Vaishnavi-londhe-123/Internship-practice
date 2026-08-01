@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from datetime import date
+from datetime import date, datetime
 
 db = SQLAlchemy()
 
@@ -12,6 +12,7 @@ class Employee(db.Model):
     Salary = db.Column(db.Float, nullable=False)
     Joining_Date = db.Column(db.Date, nullable=False)
     Email = db.Column(db.String(50), nullable=False)
+    Mobile_Number = db.Column(db.String(10), nullable=False)
     City = db.Column(db.String(50), nullable=False)
 
     def to_dict(self):
@@ -22,9 +23,11 @@ class Employee(db.Model):
             "Salary": self.Salary,
             "Joining_Date": str(self.Joining_Date),
             "Email": self.Email,
+            "Mobile_Number": self.Mobile_Number,
             "City": self.City
         }
-        
+
+
 class User(db.Model):
     __tablename__ = "users"
 
@@ -32,12 +35,15 @@ class User(db.Model):
     Name = db.Column(db.String(100), nullable=False)
     Email = db.Column(db.String(100), unique=True, nullable=False)
     Password = db.Column(db.String(100), nullable=False)
+    Status = db.Column(db.String(20), default="Active")
+    Created_Date = db.Column(db.DateTime, default=datetime.utcnow)
+    Role = db.Column(db.String(20),default="user")
 
     def to_dict(self):
         return {
             "User_ID": self.User_ID,
             "Name": self.Name,
-            "Email": self.Email
-        }              
-        
-        
+            "Email": self.Email,
+            "Status": self.Status,
+            "Created_Date": str(self.Created_Date)
+        }

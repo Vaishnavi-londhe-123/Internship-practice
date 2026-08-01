@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Users</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='dashboard.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <h2>EMS</h2>
+
+        <a href="/dashboard">🏠 Dashboard</a>
+
+        <a href="/employees-list">👨‍💼 Employees</a>
+
+        <a href="/users-list">👤 Users</a>
+
+        <a href="/add-employee">➕ Add Employee</a>
+
+        <a href="/logout">🚪 Logout</a>
+
+    </div>
+
+    <!-- Main -->
+
+    <div class="main">
+
+        <h1>Users</h1>
+
+        <form action="/user/search" method="GET"
+        style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Search User by Name"
+                style="width:300px;">
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+        <table>
+
+            <tr>
+
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Action</th>
+
+            </tr>
+
+            {% for user in users %}
+
+            <tr>
+
+                <td>{{ user.User_ID }}</td>
+                <td>{{ user.Name }}</td>
+                <td>{{ user.Email }}</td>
+                <td>{{ user.Role }}</td>
+                <td>{{ user.Status }}</td>
+
+                <td class="action-buttons">
+
+                    <a href="/edit-user/{{ user.User_ID }}">
+                        <button class="btn-warning">
+                            Edit
+                        </button>
+                    </a>
+
+                    <a href="/delete-user/{{ user.User_ID }}"
+                    onclick="return confirm('Are you sure?')">
+
+                        <button class="btn-danger">
+                            Delete
+                        </button>
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

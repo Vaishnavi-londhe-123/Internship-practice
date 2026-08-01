@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Settings</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='dashboard.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        {% if session["user_role"].lower() == "admin" %}
+
+            <h2>EMS</h2>
+
+            <a href="/dashboard">🏠 Dashboard</a>
+            <a href="/employees-list">👨‍💼 Employees</a>
+            <a href="/users-list">👤 Users</a>
+            <a href="/add-employee">➕ Add Employee</a>
+            <a href="/reports">📊 Reports</a>
+            <a href="/settings">⚙ Settings</a>
+            <a href="/logout">🚪 Logout</a>
+
+        {% else %}
+
+            <h2>EMS</h2>
+
+            <a href="/user-dashboard">🏠 Dashboard</a>
+            <a href="/reports">📊 Reports</a>
+            <a href="/settings">⚙ Settings</a>
+            <a href="/logout">🚪 Logout</a>
+
+        {% endif %}
+
+    </div>
+
+    <!-- Main -->
+
+    <div class="main">
+
+        <h1>Profile Settings</h1>
+
+        <form action="/update-settings" method="POST">
+
+            <table>
+
+                <tr>
+                    <td><b>Name</b></td>
+                    <td>
+                        <input
+                            type="text"
+                            name="Name"
+                            value="{{ user.Name }}"
+                            required>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><b>Email</b></td>
+                    <td>
+                        <input
+                            type="email"
+                            name="Email"
+                            value="{{ user.Email }}"
+                            required>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><b>Role</b></td>
+                    <td>
+                        <input
+                            type="text"
+                            value="{{ user.Role }}"
+                            readonly>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><b>New Password</b></td>
+                    <td>
+                        <input
+                            type="password"
+                            name="Password"
+                            placeholder="Enter New Password">
+                    </td>
+                </tr>
+
+            </table>
+
+            <br>
+
+            <button type="submit">
+                Update Profile
+            </button>
+
+            <br><br>
+
+{% if session["user_role"].lower() == "admin" %}
+
+    <a href="/dashboard">
+        <button type="button">
+            ← Back
+        </button>
+    </a>
+
+{% else %}
+
+    <a href="/user-dashboard">
+        <button type="button">
+            ← Back
+        </button>
+    </a>
+
+{% endif %}
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

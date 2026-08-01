@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
+    <meta charset="UTF-8">
 
     <title>{{ title }}</title>
 
     <link rel="stylesheet"
-    href="{{ url_for('static', filename='dashboard.css') }}">
+          href="{{ url_for('static', filename='dashboard.css') }}">
 
 </head>
 
@@ -13,55 +16,176 @@
 
 <div class="container">
 
-<div class="sidebar">
+    <!-- Sidebar -->
 
-<h2>EMS</h2>
+    <div class="sidebar">
 
-<a href="/dashboard">🏠 Dashboard</a>
+        <h2>EMS</h2>
 
-<a href="/employees-list">👨‍💼 Employees</a>
+        <a href="/dashboard">🏠 Dashboard</a>
 
-<a href="/add-employee">➕ Add Employee</a>
+        <a href="/employees-list">👨‍💼 Employees</a>
 
-<a href="/logout">🚪 Logout</a>
+        <a href="/users-list">👤 Users</a>
 
-</div>
+        <a href="/add-employee">➕ Add Employee</a>
 
-<div class="main">
+        <a href="/reports">📊 Reports</a>
 
-<h1>{{ title }}</h1>
+        <a href="/settings">⚙ Settings</a>
 
-<table>
+        <a href="/logout">🚪 Logout</a>
 
-<tr>
+    </div>
 
-<th>ID</th>
-<th>Name</th>
-<th>Department</th>
-<th>Email</th>
-<th>City</th>
+    <!-- Main Content -->
 
-</tr>
+    <div class="main">
 
-{% for emp in employees %}
+        <h1>{{ title }}</h1>
 
-<tr>
+        <!-- Search -->
 
-<td>{{ emp.Emp_ID }}</td>
-<td>{{ emp.Emp_Name }}</td>
-<td>{{ emp.Department_Name }}</td>
-<td>{{ emp.Email }}</td>
-<td>{{ emp.City }}</td>
+        <form action="/employee-search"
+              method="GET"
+              style="display:flex;gap:10px;margin-bottom:20px;">
 
-</tr>
+            <input
+                type="text"
+                name="name"
+                placeholder="Search Employee"
+                style="padding:10px;width:250px;">
 
-{% endfor %}
+            <select
+                name="order"
+                style="padding:10px;">
 
-</table>
+                <option value="">Sort</option>
+                <option value="asc">A-Z</option>
+                <option value="desc">Z-A</option>
 
-</div>
+            </select>
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+        <!-- Employee Table -->
+
+        <table>
+
+            <tr>
+
+                <th>ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Salary</th>
+                <th>Email</th>
+                <th>Mobile Number</th>
+                <th>City</th>
+                <th>Action</th>
+
+            </tr>
+
+            {% for emp in employees %}
+
+            <tr>
+
+                <td>{{ emp.Emp_ID }}</td>
+
+                <td>{{ emp.Emp_Name }}</td>
+
+                <td>{{ emp.Department_Name }}</td>
+
+                <td>{{ emp.Salary }}</td>
+
+                <td>{{ emp.Email }}</td>
+
+                <td>{{emp.Mobile_Number}}</td>
+
+                <td>{{ emp.City }}</td>
+
+                <td>
+
+                    <a href="/edit-employee/{{ emp.Emp_ID }}">
+                        <button type="button">
+                            Edit
+                        </button>
+                    </a>
+
+                    <a href="/delete-employee/{{ emp.Emp_ID }}"
+                       onclick="return confirm('Are you sure?')">
+
+                        <button
+                            type="button"
+                            style="background:red;color:white;">
+
+                            Delete
+
+                        </button>
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+        <!-- Pagination -->
+
+        {% if total_pages is defined and total_pages > 1 %}
+
+        <div
+            style="margin-top:20px;text-align:center;">
+
+            {% if page > 1 %}
+
+            <a href="/employees-list?page={{ page-1 }}">
+
+                <button type="button">
+
+                    Previous
+
+                </button>
+
+            </a>
+
+            {% endif %}
+
+            <span
+                style="margin:0 20px;">
+
+                Page {{ page }} of {{ total_pages }}
+
+            </span>
+
+            {% if page < total_pages %}
+
+            <a href="/employees-list?page={{ page+1 }}">
+
+                <button type="button">
+
+                    Next
+
+                </button>
+
+            </a>
+
+            {% endif %}
+
+        </div>
+
+        {% endif %}
+
+    </div>
 
 </div>
 
 </body>
+
 </html>
